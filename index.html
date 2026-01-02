@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traders Club - Comunidade de Estudo sobre Criptomoedas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a5fb4;
+            --secondary-color: #26a269;
+            --accent-color: #e5a50a;
+            --dark-color: #1e1e1e;
+            --light-color: #f8f8f8;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background-color: #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #e5a50a;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #e5a50a;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #e5a50a;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .registered-mark {
+            font-size: 0.8rem;
+            vertical-align: super;
+            color: var(--accent-color);
+            margin-left: 2px;
+            font-weight: normal;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1a5fb4 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-highlight {
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #ffc107;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Sections */
+        section {
+            padding: 3.5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 1.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-header i {
+            font-size: 2.2rem;
+        }
+
+        .card-body {
+            padding: 1.8rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+
+        /* Simulator */
+        .simulator {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .simulator-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .simulator-title i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .simulator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group input, .input-group select {
+            padding: 12px 18px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 95, 180, 0.1);
+        }
+
+        .simulator-results {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f5ff 100%);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .result-value {
+            font-weight: 800;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* Glossary */
+        .glossary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .glossary-term {
+            background-color: white;
+            padding: 1.8rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+
+        .glossary-term:hover {
+            transform: translateY(-5px);
+        }
+
+        .glossary-term h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .glossary-term h4 i {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3.5rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-section p {
+            opacity: 0.85;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+
+        /* Estilo para o símbolo de marca registrada */
+        .trademark {
+            font-size: 0.8em;
+            vertical-align: super;
+            color: var(--accent-color);
+        }
+        
+        /* Tooltip para o símbolo de marca registrada */
+        .trademark-tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .trademark-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 220px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: normal;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .trademark-tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .trademark-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Badge de comunidade */
+        .community-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cards-container, .glossary-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-title {
+                font-size: 1.6rem;
+            }
+            
+            .logo-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .simulator {
+                padding: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            nav ul {
+                gap: 0.8rem;
+            }
+            
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo-circle">JM</div>
+                <div class="logo-text">
+                    <div class="logo-title">TRADERS CLUB<span class="registered-mark trademark-tooltip">®
+                        <span class="tooltip-text">Marca Registrada. Traders Club® é uma marca registrada.</span>
+                    </span></div>
+                    <div class="logo-subtitle">Comunidade de Estudo sobre Criptomoedas</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#conceitos"><i class="fas fa-chart-line"></i> Conceitos</a></li>
+                    <li><a href="#simulador"><i class="fas fa-calculator"></i> Simulador</a></li>
+                    <li><a href="#glossario"><i class="fas fa-book"></i> Glossário</a></li>
+                    <li><a href="#recursos"><i class="fas fa-users"></i> Comunidade</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Junte-se ao <span class="hero-highlight">Traders Club</span><span class="community-badge">COMUNIDADE</span></h1>
+            <p>Domine o mercado de criptomoedas com nossa comunidade de traders. Aprenda estratégias, simule investimentos e conecte-se com experts no assunto.</p>
+            <a href="#conceitos" class="cta-button"><i class="fas fa-sign-in-alt"></i> Entrar para o Clube</a>
+        </div>
+    </section>
+
+    <!-- Conceitos Básicos -->
+    <section id="conceitos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conceitos para Traders</h2>
+                <p>Domine os fundamentos necessários para operar no mercado de criptomoedas com confiança</p>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-candlestick"></i>
+                        <h3>Análise Técnica</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Estudo do movimento de preços e volumes para prever tendências de mercado. Inclui suporte/resistência, médias móveis, indicadores técnicos e padrões gráficos.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>Análise Fundamentalista</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Avaliação do valor intrínseco de uma criptomoeda com base em tecnologia, equipe, adoção, casos de uso e notícias do setor. Fundamental para investimentos de longo prazo.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Gestão de Risco</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Estratégias para proteger seu capital: stop loss, posicionamento adequado, diversificação e alocação de ativos. A chave para longevidade no trading.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulador de Investimentos -->
+    <section id="simulador" style="background-color: #f0f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simulador de Trading</h2>
+                <p>Teste suas estratégias de investimento sem riscos reais. Ideal para iniciantes.</p>
+            </div>
+            
+            <div class="simulator">
+                <div class="simulator-title">
+                    <i class="fas fa-vial"></i>
+                    <h3>Laboratório de Trading</h3>
+                </div>
+                
+                <div class="simulator-controls">
+                    <div class="input-group">
+                        <label for="crypto-select"><i class="fas fa-coins"></i> Criptomoeda:</label>
+                        <select id="crypto-select">
+                            <option value="btc">Bitcoin (BTC)</option>
+                            <option value="eth">Ethereum (ETH)</option>
+                            <option value="ada">Cardano (ADA)</option>
+                            <option value="sol">Solana (SOL)</option>
+                            <option value="dot">Polkadot (DOT)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="investment"><i class="fas fa-money-bill-wave"></i> Capital Inicial (R$):</label>
+                        <input type="number" id="investment" min="100" max="1000000" value="5000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="period"><i class="fas fa-calendar-alt"></i> Período (meses):</label>
+                        <input type="number" id="period" min="1" max="60" value="6">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="monthly-add"><i class="fas fa-plus-circle"></i> Aporte Mensal (R$):</label>
+                        <input type="number" id="monthly-add" min="0" max="10000" value="500">
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 2rem 0;">
+                    <button class="cta-button" id="simulate-btn"><i class="fas fa-play-circle"></i> Executar Simulação</button>
+                </div>
+                
+                <div class="simulator-results" id="results" style="display: none;">
+                    <h3>Resultados da Simulação</h3>
+                    <div class="result-item">
+                        <span>Capital Total Investido:</span>
+                        <span class="result-value" id="total-invested">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Valor Final do Portfólio:</span>
+                        <span class="result-value" id="final-value">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Lucro/Prejuízo:</span>
+                        <span class="result-value" id="profit-loss">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Retorno Percentual:</span>
+                        <span class="result-value" id="return-percent">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glossário -->
+    <section id="glossario">
+        <div class="container">
+            <div class="section-title">
+                <h2>Glossário do Trader</h2>
+                <p>Conheça a linguagem do mercado de criptomoedas</p>
+            </div>
+            
+            <div class="glossary-container">
+                <div class="glossary-term">
+                    <h4><i class="fas fa-bullish"></i> Bull Market</h4>
+                    <p>Mercado em alta, otimista, com tendência de valorização dos preços. Período ideal para compras e investimentos de longo prazo.</p>
+                </div>
+                
+                <div class="glossary-term">
+                    <h4><i class="fas fa-bearish"></i> Bear Market</h4>
+                    <p>Mercado em baixa, pessimista, com tendência de queda dos preços. Período para cautela ou venda a descoberto para traders experientes.</p>
+                </div>
+                
+                <div class="glossary-term">
+                    <h4><i class="fas fa-hand-holding-usd"></i> Hold</h4>
+                    <p>Estratégia de manter criptomoedas por longo prazo, independente da volatilidade do mercado. Baseada na crença de valorização futura.</p>
+                </div>
+                
+                <div class="glossary-term">
+                    <h4><i class="fas fa-exchange-alt"></i> FOMO</h4>
+                    <p>"Fear Of Missing Out" - Medo de perder uma oportunidade. Emoção que leva traders a comprar no topo por impulso.</p>
+                </div>
+                
+                <div class="glossary-term">
+                    <h4><i class="fas fa-sack-dollar"></i> Bag Holder</h4>
+                    <p>Investidor que mantém criptomoedas em queda, esperando por uma recuperação que pode nunca acontecer.</p>
+                </div>
+                
+                <div class="glossary-term">
+                    <h4><i class="fas fa-robot"></i> Bot Trading</h4>
+                    <p>Uso de algoritmos automatizados para executar operações de compra e venda baseadas em critérios predefinidos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos e Footer -->
+    <footer id="recursos">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-circle-info"></i> Sobre o Traders Club<span class="trademark">®</span></h3>
+                    <p>Comunidade exclusiva para traders de criptomoedas, desde iniciantes até experts. Oferecemos educação, ferramentas e networking para melhorar seus resultados no mercado.</p>
+                    <p><small>Traders Club<span class="trademark">®</span> é uma marca registrada da JM Investments.</small></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-tools"></i> Ferramentas Recomendadas</h3>
+                    <p><i class="fas fa-external-link-alt"></i> <a href="https://www.tradingview.com" target="_blank" style="color: var(--accent-color);">TradingView</a> - Análise gráfica avançada</p>
+                    <p><i class="fas fa-external-link-alt"></i> <a href="https://coinmarketcap.com" target="_blank" style="color: var(--accent-color);">CoinMarketCap</a> - Dados de mercado</p>
+                    <p><i class="fas fa-external-link-alt"></i> <a href="https://www.coingecko.com" target="_blank" style="color: var(--accent-color);">CoinGecko</a> - Análise fundamentalista</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-user-group"></i> Junte-se à Comunidade</h3>
+                    <p>Conecte-se com outros traders, compartilhe ideias e aprenda com os melhores.</p>
+                    <div class="social-links">
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 <strong>Traders Club<span class="trademark">®</span></strong> by JM Investments. Todos os direitos reservados.</p>
+                <p><em>AVISO: Trading envolve riscos significativos. O conteúdo é educacional e não constitui recomendação de investimento.</em></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulador de Trading
+        document.getElementById('simulate-btn').addEventListener('click', function() {
+            // Valores das criptomoedas (fictícios para simulação)
+            const cryptoPrices = {
+                btc: 150000, // R$ 150.000 por Bitcoin
+                eth: 9000,   // R$ 9.000 por Ethereum
+                ada: 2.5,    // R$ 2,50 por Cardano
+                sol: 120,    // R$ 120 por Solana
+                dot: 35      // R$ 35 por Polkadot
+            };
+            
+            // Volatilidade média (fictícia)
+            const cryptoVolatility = {
+                btc: 0.02,  // 2% ao mês
+                eth: 0.04,  // 4% ao mês
+                ada: 0.06,  // 6% ao mês
+                sol: 0.08,  // 8% ao mês
+                dot: 0.05   // 5% ao mês
+            };
+            
+            // Retorno médio esperado (fictício)
+            const cryptoReturns = {
+                btc: 0.03,  // 3% ao mês
+                eth: 0.05,  // 5% ao mês
+                ada: 0.04,  // 4% ao mês
+                sol: 0.07,  // 7% ao mês
+                dot: 0.045  // 4.5% ao mês
+            };
+            
+            // Obter valores do formulário
+            const crypto = document.getElementById('crypto-select').value;
+            const initialInvestment = parseFloat(document.getElementById('investment').value);
+            const period = parseInt(document.getElementById('period').value);
+            const monthlyAdd = parseFloat(document.getElementById('monthly-add').value);
+            
+            // Calcular valores com simulação estocástica
+            let futureValue = initialInvestment;
+            let monthlyValue = initialInvestment;
+            
+            // Simular com variação aleatória
+            for (let i = 0; i < period; i++) {
+                // Retorno aleatório baseado na volatilidade
+                const randomFactor = 1 + (Math.random() - 0.5) * 2 * cryptoVolatility[crypto];
+                const monthlyReturn = cryptoReturns[crypto] * randomFactor;
+                
+                // Aplicar retorno mensal
+                monthlyValue = monthlyValue * (1 + monthlyReturn) + monthlyAdd;
+                
+                // Atualizar valor futuro
+                futureValue = monthlyValue;
+            }
+            
+            // Calcular total investido
+            const totalInvested = initialInvestment + (monthlyAdd * period);
+            
+            // Calcular lucro e percentual
+            const profit = futureValue - totalInvested;
+            const returnPercent = ((futureValue / totalInvested - 1) * 100).toFixed(2);
+            
+            // Atualizar a interface
+            document.getElementById('total-invested').textContent = formatCurrency(totalInvested);
+            document.getElementById('final-value').textContent = formatCurrency(futureValue);
+            document.getElementById('profit-loss').textContent = formatCurrency(profit);
+            document.getElementById('return-percent').textContent = `${returnPercent}%`;
+            
+            // Colorir o resultado de lucro/prejuízo
+            const profitElement = document.getElementById('profit-loss');
+            if (profit >= 0) {
+                profitElement.style.color = '#26a269';
+            } else {
+                profitElement.style.color = '#c01c28';
+            }
+            
+            // Mostrar os resultados
+            document.getElementById('results').style.display = 'block';
+            
+            // Rolar até os resultados
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+        
+        // Formatar valores monetários
+        function formatCurrency(value) {
+            return 'R$ ' + value.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+        
+        // Navegação suave
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Inicializar a simulação com valores padrão
+        document.getElementById('simulate-btn').click();
+        
+        // Efeito de digitação no título do herói (opcional)
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.innerHTML;
+        
+        // Efeito de entrada
+        heroTitle.style.opacity = '0';
+        setTimeout(() => {
+            heroTitle.style.transition = 'opacity 1s';
+            heroTitle.style.opacity = '1';
+        }, 300);
+    </script>
+</body>
+  </html>
