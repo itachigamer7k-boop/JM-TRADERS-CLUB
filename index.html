@@ -49,7 +49,7 @@
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
@@ -102,13 +102,14 @@
             font-weight: normal;
         }
 
-        nav ul {
+        /* Menu Desktop - VISÍVEL NO PC */
+        .nav-desktop {
             display: flex;
             list-style: none;
             gap: 1.5rem;
         }
 
-        nav a {
+        .nav-desktop a {
             color: white;
             text-decoration: none;
             font-weight: 500;
@@ -120,9 +121,96 @@
             gap: 8px;
         }
 
-        nav a:hover {
+        .nav-desktop a:hover {
             color: var(--accent-color);
             background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Botão Hambúrguer - VISÍVEL APENAS NO CELULAR */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s;
+            border-radius: 4px;
+            margin-right: -65px;
+            margin-top: -40px;
+            position: relative;
+        }
+
+        .mobile-menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Menu Mobile (Overlay) */
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 30, 30, 0.98);
+            z-index: 2000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-mobile.active {
+            display: flex;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-menu-list li {
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .mobile-menu-list a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-list a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
         }
 
         /* Hero Section */
@@ -192,6 +280,175 @@
             background-color: #ffc107;
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Modal Styles - CORRIGIDO */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 500px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .modal-title h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .modal-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .modal-input-group label {
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-input-group input {
+            padding: 14px 18px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .modal-input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 95, 180, 0.1);
+        }
+
+        .modal-button {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .modal-button:hover {
+            background-color: #ffc107;
+            transform: translateY(-3px);
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .contact-option i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        .whatsapp-note {
+            background-color: #f0f9ff;
+            border: 1px solid #b3e0ff;
+            border-radius: var(--border-radius);
+            padding: 12px;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #0066cc;
+        }
+
+        .whatsapp-note i {
+            color: #25D366;
+            margin-right: 5px;
         }
 
         /* Sections */
@@ -534,14 +791,19 @@
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1.2rem;
+            /* OCULTAR menu desktop no celular */
+            .nav-desktop {
+                display: none;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+            /* MOSTRAR botão hambúrguer no celular */
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .header-content {
+                flex-direction: row;
+                gap: 1.2rem;
             }
             
             .hero {
@@ -573,6 +835,15 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+            
+            .modal-content {
+                padding: 1.8rem;
+                max-height: 80vh;
+            }
+            
+            .modal-title h3 {
+                font-size: 1.5rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -589,18 +860,33 @@
             }
             
             .logo-container {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 10px;
-                text-align: center;
+                text-align: left;
             }
             
-            nav ul {
-                gap: 0.8rem;
+            .logo-title {
+                font-size: 1.4rem;
             }
             
-            nav a {
-                padding: 6px 10px;
-                font-size: 0.9rem;
+            .logo-subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .mobile-menu-list a {
+                font-size: 1.1rem;
+                padding: 12px 15px;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Fix para scroll no modal em iOS */
+        @supports (-webkit-overflow-scrolling: touch) {
+            .modal-content {
+                -webkit-overflow-scrolling: touch;
             }
         }
     </style>
@@ -609,32 +895,55 @@
     <!-- Header -->
     <header>
         <div class="container header-content">
-            <div class="logo-container">
-                <div class="logo-circle">JM</div>
-                <div class="logo-text">
+            <div class="logo-container" style="flex-direction:column;text-align:center;gap:10px;">
+                <div class="logo-circle" style="margin:o auto;">JM</div>
+                <div class="logo-text" style="align-items:center;">
                     <div class="logo-title">TRADERS CLUB<span class="registered-mark trademark-tooltip">®
                         <span class="tooltip-text">Marca Registrada. Traders Club® é uma marca registrada.</span>
                     </span></div>
                     <div class="logo-subtitle">Comunidade de Estudo sobre Criptomoedas</div>
                 </div>
             </div>
-            <nav>
-                <ul>
+            
+            <!-- Menu Desktop - VISÍVEL NO PC -->
+            <nav class="nav-desktop">
+                <ul class="nav-desktop">
                     <li><a href="#conceitos"><i class="fas fa-chart-line"></i> Conceitos</a></li>
                     <li><a href="#simulador"><i class="fas fa-calculator"></i> Simulador</a></li>
                     <li><a href="#glossario"><i class="fas fa-book"></i> Glossário</a></li>
                     <li><a href="#recursos"><i class="fas fa-users"></i> Comunidade</a></li>
                 </ul>
             </nav>
+            
+            <!-- Botão Hambúrguer - VISÍVEL APENAS NO CELULAR -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
+
+    <!-- Menu Mobile (Overlay) -->
+    <div class="nav-mobile" id="navMobile">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-menu-list">
+            <li><a href="#conceitos"><i class="fas fa-chart-line"></i> Conceitos</a></li>
+            <li><a href="#simulador"><i class="fas fa-calculator"></i> Simulador</a></li>
+            <li><a href="#glossario"><i class="fas fa-book"></i> Glossário</a></li>
+            <li><a href="#recursos"><i class="fas fa-users"></i> Comunidade</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
             <h1>Junte-se ao <span class="hero-highlight">Traders Club</span><span class="community-badge">COMUNIDADE</span></h1>
             <p>Domine o mercado de criptomoedas com nossa comunidade de traders. Aprenda estratégias, simule investimentos e conecte-se com experts no assunto.</p>
-            <a href="#conceitos" class="cta-button"><i class="fas fa-sign-in-alt"></i> Entrar para o Clube</a>
+            <!-- Botão que abre o modal -->
+            <button class="cta-button" id="openModalBtn">
+                <i class="fas fa-sign-in-alt"></i> Entrar para o Clube
+            </button>
         </div>
     </section>
 
@@ -796,7 +1105,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-circle-info"></i> Sobre o Traders Club<span class="trademark">®</span></h3>
+                    <h3><i class="fas fa-circle-info"></i> Traders Club<span class="trademark">®</span></h3>
                     <p>Comunidade exclusiva para traders de criptomoedas, desde iniciantes até experts. Oferecemos educação, ferramentas e networking para melhorar seus resultados no mercado.</p>
                     <p><small>Traders Club<span class="trademark">®</span> é uma marca registrada da JM Investments.</small></p>
                 </div>
@@ -821,182 +1130,350 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 <strong>Traders Club<span class="trademark">®</span></strong> by JM Investments. Todos os direitos reservados.</p>
+                <p>&copy; 2026 <strong>Traders Club<span class="trademark">®</span></strong> by JM Investments. Todos os direitos reservados.</p>
                 <p><em>AVISO: Trading envolve riscos significativos. O conteúdo é educacional e não constitui recomendação de investimento.</em></p>
             </div>
         </div>
     </footer>
 
+    <!-- Modal para entrar no clube -->
+    <div class="modal-overlay" id="joinModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            
+            <div class="modal-title">
+                <h3>Entrar para o Traders Club</h3>
+                <p>Preencha seus dados para acessar conteúdos exclusivos</p>
+            </div>
+            
+            <form class="modal-form" id="joinForm">
+                <div class="modal-input-group">
+                    <label for="userNome"><i class="fas fa-user"></i> Nome</label>
+                    <input type="nome" id="userNome" placeholder="nome" required>
+                </div>
+              
+                <div class="modal-input-group">
+                    <label for="userEmail"><i class="fas fa-envelope"></i> E-mail</label>
+                    <input type="email" id="userEmail" placeholder="seu@email.com" required>
+                </div>
+                
+                <div class="modal-input-group">
+                    <label for="userPhone"><i class="fas fa-phone"></i> Telefone</label>
+                    <input type="tel" id="userPhone" placeholder="(11) 99999-9999" required>
+                </div>
+                
+                <div class="modal-input-group">
+                    <label for="userWhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                    <input type="tel" id="userWhatsApp" placeholder="(11) 99999-9999">
+                </div>
+                
+                <button type="submit" class="modal-button">
+                    <i class=""></i> Juntar ao Club
+                </button>
+            </form>
+            
+            <div class="contact-options">
+                <div class="contact-option">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Entraremos em contato em até 24 horas</span>
+                </div>
+                <div class="contact-option">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Seus dados estão seguros conosco</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Simulador de Trading
         document.getElementById('simulate-btn').addEventListener('click', function() {
-            // Valores das criptomoedas (fictícios para simulação)
             const cryptoPrices = {
-                btc: 150000, // R$ 150.000 por Bitcoin
-                eth: 9000,   // R$ 9.000 por Ethereum
-                ada: 2.5,    // R$ 2,50 por Cardano
-                sol: 120,    // R$ 120 por Solana
-                dot: 35      // R$ 35 por Polkadot
+                btc: 150000,
+                eth: 9000,
+                ada: 2.5,
+                sol: 120,
+                dot: 35
             };
             
-            // Volatilidade média (fictícia)
             const cryptoVolatility = {
-                btc: 0.02,  // 2% ao mês
-                eth: 0.04,  // 4% ao mês
-                ada: 0.06,  // 6% ao mês
-                sol: 0.08,  // 8% ao mês
-                dot: 0.05   // 5% ao mês
+                btc: 0.02,
+                eth: 0.04,
+                ada: 0.06,
+                sol: 0.08,
+                dot: 0.05
             };
             
-            // Retorno médio esperado (fictício)
             const cryptoReturns = {
-                btc: 0.03,  // 3% ao mês
-                eth: 0.05,  // 5% ao mês
-                ada: 0.04,  // 4% ao mês
-                sol: 0.07,  // 7% ao mês
-                dot: 0.045  // 4.5% ao mês
+                btc: 0.03,
+                eth: 0.05,
+                ada: 0.04,
+                sol: 0.07,
+                dot: 0.045
             };
             
-            // Obter valores do formulário
             const crypto = document.getElementById('crypto-select').value;
             const initialInvestment = parseFloat(document.getElementById('investment').value);
             const period = parseInt(document.getElementById('period').value);
             const monthlyAdd = parseFloat(document.getElementById('monthly-add').value);
             
-            // Calcular valores com simulação estocástica
             let futureValue = initialInvestment;
             let monthlyValue = initialInvestment;
             
-            // Simular com variação aleatória
             for (let i = 0; i < period; i++) {
-                // Retorno aleatório baseado na volatilidade
                 const randomFactor = 1 + (Math.random() - 0.5) * 2 * cryptoVolatility[crypto];
                 const monthlyReturn = cryptoReturns[crypto] * randomFactor;
-                
-                // Aplicar retorno mensal
                 monthlyValue = monthlyValue * (1 + monthlyReturn) + monthlyAdd;
-                
-                // Atualizar valor futuro
                 futureValue = monthlyValue;
             }
             
-            // Calcular total investido
             const totalInvested = initialInvestment + (monthlyAdd * period);
-            
-            // Calcular lucro e percentual
             const profit = futureValue - totalInvested;
             const returnPercent = ((futureValue / totalInvested - 1) * 100).toFixed(2);
             
-            // Atualizar a interface
             document.getElementById('total-invested').textContent = formatCurrency(totalInvested);
             document.getElementById('final-value').textContent = formatCurrency(futureValue);
             document.getElementById('profit-loss').textContent = formatCurrency(profit);
             document.getElementById('return-percent').textContent = `${returnPercent}%`;
             
-            // Colorir o resultado de lucro/prejuízo
             const profitElement = document.getElementById('profit-loss');
-            if (profit >= 0) {
-                profitElement.style.color = '#26a269';
-            } else {
-                profitElement.style.color = '#c01c28';
-            }
+            profitElement.style.color = profit >= 0 ? '#26a269' : '#c01c28';
             
-            // Mostrar os resultados
             document.getElementById('results').style.display = 'block';
-            
-            // Rolar até os resultados
             document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
         
-        // Formatar valores monetários
         function formatCurrency(value) {
             return 'R$ ' + value.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
         
         // Navegação suave
-        document.querySelectorAll('nav a').forEach(anchor => {
+        document.querySelectorAll('nav a, .mobile-menu-list a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
+                
+                const mobileMenu = document.getElementById('navMobile');
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                }
+                
                 document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
         
-        // Inicializar a simulação com valores padrão
+        // Menu Mobile
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const navMobile = document.getElementById('navMobile');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navMobile.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileMenuClose.addEventListener('click', function() {
+            navMobile.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        document.querySelectorAll('.mobile-menu-list a').forEach(item => {
+            item.addEventListener('click', function() {
+                navMobile.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        navMobile.addEventListener('click', function(e) {
+            if (e.target === navMobile) {
+                navMobile.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMobile.classList.contains('active')) {
+                navMobile.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // MODAL CORRIGIDO
+        const joinModal = document.getElementById('joinModal');
+        const modalClose = document.getElementById('modalClose');
+        const joinForm = document.getElementById('joinForm');
+        const openModalBtn = document.getElementById('openModalBtn');
+        
+        openModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            joinModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        modalClose.addEventListener('click', function() {
+            joinModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        joinModal.addEventListener('click', function(e) {
+            if (e.target === joinModal) {
+                joinModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && joinModal.style.display === 'flex') {
+                joinModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Enviar para WhatsApp SEM alertas
+        joinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const whatsapp = document.getElementById('userWhatsApp').value.trim();
+            
+            if (!email || !phone) {
+                alert('Por favor, preencha pelo menos o e-mail e telefone.');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+            
+            // ⚠️ CONFIGURE AQUI O NÚMERO DO WHATSAPP DA SUA EMPRESA ⚠️
+            // Formato: 55 + DDD + número (ex: 5511999999999)
+            const empresaWhatsApp = "5568992099344"; // ALTERE ESTE NÚMERO
+            
+            const mensagem = `📈 *NOVA INSCRIÇÃO - TRADERS CLUB* 📈%0A%0A` +
+                            `👤 *Dados do Interessado:*%0A` +
+                            `📧 *E-mail:* ${email}%0A` +
+                            `📱 *Telefone:* ${phone}%0A` +
+                            `💬 *WhatsApp:* ${whatsapp || phone}%0A%0A` +
+                            `⏰ *Data/Hora:* ${new Date().toLocaleString('pt-BR')}%0A` +
+                            `🌐 *Origem:* Site Traders Club`;
+            
+            const whatsappLink = `https://wa.me/${empresaWhatsApp}?text=${mensagem}`;
+            
+            joinModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            joinForm.reset();
+            
+            // Abre WhatsApp em nova aba
+            window.open(whatsappLink, '_blank');
+        });
+        
+        // Máscara para telefone
+        function phoneMask(input) {
+            let value = input.value.replace(/\D/g, '');
+            
+            if (value.length > 10) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else {
+                value = value.replace(/^(\d*)/, '($1');
+            }
+            
+            input.value = value;
+        }
+        
+        document.getElementById('userPhone').addEventListener('input', function() {
+            phoneMask(this);
+        });
+        
+        document.getElementById('userWhatsApp').addEventListener('input', function() {
+            phoneMask(this);
+        });
+        
+        // Fix para scroll no modal
+        document.querySelectorAll('.modal-input-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            });
+        });
+        
+        // Inicializar simulador
         document.getElementById('simulate-btn').click();
         
-        // Efeito de digitação no título do herói (opcional)
-        const heroTitle = document.querySelector('.hero h1');
-        const originalText = heroTitle.innerHTML;
-        
-        // Efeito de entrada
-        heroTitle.style.opacity = '0';
-        setTimeout(() => {
-            heroTitle.style.transition = 'opacity 1s';
-            heroTitle.style.opacity = '1';
-        }, 300);
+        console.log('⚠️ CONFIGURE O NÚMERO DO WHATSAPP:');
+        console.log('1. Encontre: const empresaWhatsApp = "5511999999999"');
+        console.log('2. Substitua pelo número real da empresa');
+        console.log('3. Formato: 55 (Brasil) + DDD + número');
+        console.log('   Ex: (11) 98765-4321 → 5511987654321');
     </script>
-        <!-- ₿ ETH EFEITO DE CRYPTO CAINDO (MINIMALISTA) -->
-<style>
-.crypto-falling {
-    position: fixed;
-    top: -50px;
-    color: #f7931a;
-    font-size: 1.5em;
-    user-select: none;
-    pointer-events: none;
-    text-shadow: 0 0 8px currentColor;
-    z-index: 9999;
-    animation: cryptoFall linear forwards;
-}
-
-.crypto-falling.eth {
-    color: #627eea;
-}
-
-@keyframes cryptoFall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
+    <!-- ₿ ETH EFEITO DE CRYPTO CAINDO (MINIMALISTA) -->
+    <style>
+    .crypto-falling {
+        position: fixed;
+        top: -50px;
+        color: #f7931a;
+        font-size: 1.5em;
+        user-select: none;
+        pointer-events: none;
+        text-shadow: 0 0 8px currentColor;
+        z-index: 9999;
+        animation: cryptoFall linear forwards;
     }
-}
-</style>
 
-<script>
-// Adicionar Font Awesome se não estiver presente
-if (!document.querySelector('link[href*="font-awesome"]')) {
-    const faLink = document.createElement('link');
-    faLink.rel = 'stylesheet';
-    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-    document.head.appendChild(faLink);
-}
+    .crypto-falling.eth {
+        color: #627eea;
+    }
 
-function createCrypto() {
-    const icon = document.createElement("div");
-    const isBitcoin = Math.random() > 0.5;
-    
-    icon.className = `crypto-falling ${isBitcoin ? '' : 'eth'}`;
-    icon.innerHTML = isBitcoin ? '<i class="fab fa-bitcoin"></i>' : '<i class="fab fa-ethereum"></i>';
-    
-    icon.style.left = Math.random() * window.innerWidth + "px";
-    icon.style.fontSize = (Math.random() * 25 + 15) + "px";
-    icon.style.opacity = Math.random() * 0.6 + 0.4;
-    icon.style.animationDuration = Math.random() * 10 + 8 + "s";
-    
-    document.body.appendChild(icon);
-    
-    setTimeout(() => icon.remove(), 18000);
-}
+    @keyframes cryptoFall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    </style>
 
-// Inicializar
-for (let i = 0; i < 30; i++) {
-    setTimeout(createCrypto, i * 400);
-}
+    <script>
+    // Adicionar Font Awesome se não estiver presente
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const faLink = document.createElement('link');
+        faLink.rel = 'stylesheet';
+        faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(faLink);
+    }
 
-setInterval(createCrypto, 800);
-</script>
-<!-- ₿ ETH FIM EFEITO DE CRYPTO CAINDO -->
-</body>
-  </html>
+    function createCrypto() {
+        const icon = document.createElement("div");
+        const isBitcoin = Math.random() > 0.5;
+    
+        icon.className = `crypto-falling ${isBitcoin ? '' : 'eth'}`;
+        icon.innerHTML = isBitcoin ? '<i class="fab fa-bitcoin"></i>' : '<i class="fab fa-ethereum"></i>';
+    
+        icon.style.left = Math.random() * window.innerWidth + "px";
+        icon.style.fontSize = (Math.random() * 25 + 15) + "px";
+        icon.style.opacity = Math.random() * 0.6 + 0.4;
+        icon.style.animationDuration = Math.random() * 10 + 8 + "s";
+    
+        document.body.appendChild(icon);
+    
+        setTimeout(() => icon.remove(), 18000);
+    }
+
+    // Inicializar
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createCrypto, i * 400);
+    }
+
+    setInterval(createCrypto, 800);
+    </script>
+    <!-- ₿ ETH FIM EFEITO DE CRYPTO CAINDO -->
+    </body>
+    </html>
